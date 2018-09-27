@@ -7,23 +7,9 @@
     filename: mgmt-jessie
     update_cache: no
 
-- name: Add apt-mirror repo on mgmt server for cumulus main
-  apt_repository:
-    repo: deb http://{{ cl_oob_server }}/repo CumulusLinux-3 cumulus upstream
-    state: present
-    filename: mgmt-cumulus
-    update_cache: no
-
-- name: Add apt-mirror repo on mgmt server for cumulus security
-  apt_repository:
-    repo: deb http://{{ cl_oob_server }}/repo CumulusLinux-3-security-updates cumulus upstream
-    state: present
-    filename: mgmt-cumulus
-    update_cache: no
-
-- name: Add apt-mirror repo on mgmt server for cumulus updates
-  apt_repository:
-    repo: deb http://{{ cl_oob_server }}/repo CumulusLinux-3-updates cumulus upstream
-    state: present
-    filename: mgmt-cumulus
-    update_cache: no
+ - name: Replace cumulus repo with mirrored one
+   replace:
+      dest: /etc/apt/sources.list
+      regexp: 'repo3.cumulusnetworks.com'
+      replace: '{{ cl_oob_server }}'
+...
