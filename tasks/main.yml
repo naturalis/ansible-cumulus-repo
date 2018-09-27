@@ -5,7 +5,7 @@
     repo: deb http://{{ cl_oob_server }}/debian jessie main
     state: present
     filename: mgmt-jessie
-    update_cache: no
+    update_cache: yes
 
 - name: Replace cumulus repo with mirrored one
   replace:
