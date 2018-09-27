@@ -7,9 +7,9 @@
     filename: mgmt-jessie
     update_cache: no
 
- - name: Replace cumulus repo with mirrored one
-   replace:
-      dest: /etc/apt/sources.list
-      regexp: 'repo3.cumulusnetworks.com'
-      replace: '{{ cl_oob_server }}'
+- name: Replace cumulus repo with mirrored one
+  replace:
+    dest: /etc/apt/sources.list
+    regexp: 'repo3.cumulusnetworks.com'
+    replace: '{{ cl_oob_server }}'
 ...
