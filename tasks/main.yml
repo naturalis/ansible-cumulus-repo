@@ -5,11 +5,12 @@
     repo: deb http://{{ cl_oob_server }}/debian jessie main
     state: present
     filename: mgmt-jessie
-    update_cache: yes
+  notify: Update apt cache
 
 - name: Replace cumulus repo with mirrored one
   replace:
     dest: /etc/apt/sources.list
     regexp: 'repo3.cumulusnetworks.com'
     replace: '{{ cl_oob_server }}'
+  notify: Update apt cache
 ...
