@@ -11,4 +11,5 @@
     repo: deb http://{{ cl_oob_server }}/debian jessie main
     state: present
     filename: mgmt-jessie
+    update_cache: no
 ...
