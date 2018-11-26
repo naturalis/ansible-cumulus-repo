@@ -4,11 +4,11 @@
   replace:
     dest: /etc/apt/sources.list
     regexp: 'repo3.cumulusnetworks.com'
-    replace: '{{ cl_oob_server }}'
+    replace: '{{ cl_apt_mirror }}'
 
 - name: Add apt-mirror repo on mgmt server for jessie main
   apt_repository:
-    repo: deb http://{{ cl_oob_server }}/debian jessie main
+    repo: deb http://{{ cl_apt_mirror }}/debian jessie main
     state: present
     filename: mgmt-jessie
     update_cache: no
