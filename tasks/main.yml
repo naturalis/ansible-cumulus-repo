@@ -1,15 +1,24 @@
 ---
-# Set apt-mirror repo's on the oob mgmt server.
-- name: Replace cumulus repo with mirrored one
-  replace:
-    dest: /etc/apt/sources.list
+- name: Remove cumulus repositories
+  lineinfile:
+    path: /etc/apt/sources.list
+    state: absent
     regexp: 'repo3.cumulusnetworks.com'
-    replace: '{{ cl_apt_mirror }}'
 
-- name: Add apt-mirror repo on mgmt server for jessie main
+- name: Add mirrored cumulus repositories
   apt_repository:
-    repo: deb http://{{ cl_apt_mirror }}/debian jessie main
+    repo: "{{ item }}"
     state: present
-    filename: mgmt-jessie
-    update_cache: no
+    filename: cumulus
+  with_items:
+    - deb http://{{ cl_apt_mirror }} CumulusLinux-3 cumulus upstream
+    - deb http://{{ cl_apt_mirror }} CumulusLinux-3-security-updates cumulus upstream
+    - deb http://{{ cl_apt_mirror }} CumulusLinux-3-updates cumulus upstream
+
+#- name: Add mirrored debian jessie repository
+#  apt_repository:
+#    repo: deb http://{{ cl_apt_mirror }}/debian jessie main
+#    state: present
+#    filename: mgmt-jessie
+#    update_cache: no
 ...
