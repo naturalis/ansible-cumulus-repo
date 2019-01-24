@@ -10,15 +10,17 @@
     repo: "{{ item }}"
     state: present
     filename: cumulus
+    update_cache: no
   with_items:
-    - deb http://{{ cl_apt_mirror }}/repo CumulusLinux-3 cumulus upstream
-    - deb http://{{ cl_apt_mirror }}/repo CumulusLinux-3-security-updates cumulus upstream
-    - deb http://{{ cl_apt_mirror }}/repo CumulusLinux-3-updates cumulus upstream
+    - deb http://{{ cl_apt_mirror }} CumulusLinux-3 cumulus upstream
+    - deb http://{{ cl_apt_mirror }} CumulusLinux-3-security-updates cumulus upstream
+    - deb http://{{ cl_apt_mirror }} CumulusLinux-3-updates cumulus upstream
 
 - name: Add mirrored debian jessie repository
   apt_repository:
     repo: deb http://{{ cl_apt_mirror }}/debian jessie main
     state: present
     filename: jessie
+    update_cache: no
   when: debian_mirror == 'yes'
 ...

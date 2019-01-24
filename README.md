@@ -17,7 +17,7 @@ None.
 
 Available variables are listed below.
 ```bash
-cl_apt_mirror: repo3.cumulusnetworks.com
+cl_apt_mirror: repo3.cumulusnetworks.com/repo
 debian_mirror: no
 ```
 
