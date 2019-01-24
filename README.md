@@ -1,10 +1,10 @@
 # Ansible Role: Cumulus repo
 
-Used in [network](https://github.com/naturalis/network/) repo.
+Used to provision cumulus switches.
 
 Runnable with:
 ```bash
-ansible-playbook playbooks/cumulus_provision.yml -i environments/prod
+ansible-playbook playbooks/cumulus_provision.yml -i inventories/production
 ```
 
 This role will add repo's to source.list mirrored on the oob mgmt server.
@@ -17,7 +17,8 @@ None.
 
 Available variables are listed below.
 ```bash
-cl_oob_server: '172.16.144.10'
+cl_apt_mirror: repo3.cumulusnetworks.com
+debian_mirror: no
 ```
 
 ## Dependencies
@@ -28,7 +29,7 @@ None.
 
     - hosts: switches
       roles:
-        - ansible-cumulus-common
+        - ansible-cumulus-repo
 
 ## License
 

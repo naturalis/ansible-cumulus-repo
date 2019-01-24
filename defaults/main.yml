@@ -1,0 +1,4 @@
+---
+cl_apt_mirror: repo3.cumulusnetworks.com
+debian_mirror: no
+...
