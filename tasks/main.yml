@@ -1,20 +1,14 @@
 ---
-- name: Remove cumulus repositories
+- name: Set up repo
   lineinfile:
     path: /etc/apt/sources.list
-    state: absent
-    regexp: 'repo3.cumulusnetworks.com'
-
-- name: Add mirrored cumulus repositories
-  apt_repository:
-    repo: "{{ item }}"
-    state: present
-    filename: cumulus
-    update_cache: no
+    line: "{{ item }}"
   with_items:
-    - deb http://{{ cl_apt_mirror }} CumulusLinux-3 cumulus upstream
-    - deb http://{{ cl_apt_mirror }} CumulusLinux-3-security-updates cumulus upstream
-    - deb http://{{ cl_apt_mirror }} CumulusLinux-3-updates cumulus upstream
+    - "deb http://{{ cl_apt_mirror }} CumulusLinux-3 cumulus upstream"
+    - "deb http://{{ cl_apt_mirror }} CumulusLinux-3-security-updates cumulus upstream"
+    - "deb http://{{ cl_apt_mirror }} CumulusLinux-3-updates cumulus upstream"
+  tags:
+    - repo
 
 - name: Add mirrored debian jessie repository
   apt_repository:
@@ -23,4 +17,6 @@
     filename: jessie
     update_cache: no
   when: debian_mirror == 'yes'
+  tags:
+    - repo
 ...
